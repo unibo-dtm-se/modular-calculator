@@ -51,6 +51,9 @@ class CalculatorApp(App):
             case "/":
                 self._calc.divide()
                 self._display.text = self._calc.expression
+            case ".":
+                self._calc.dot()
+                self._display.text = self._calc.expression
             case _:
                 self._calc.digit(button.text)
                 self._display.text = self._calc.expression
