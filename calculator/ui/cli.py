@@ -2,18 +2,22 @@ from calculator import Calculator
 import sys
 
 
-def main(args, output=sys.stdout):
-    calculator = Calculator()
-    calculator.expression = " ".join(args)
-    try:
-        result = calculator.compute_result()
-        print(result, file=output)
-    except ValueError as e:
-        print(e, file=output)
+class CalculatorCLI:
+    def __init__(self, args):
+        self._args = args
+        self._calc = Calculator()
+
+    def run(self):
+        if not self._args:
+            print("Usage: python -m calculator.ui.cli <expression>")
+            return
+        self._calc.expression = " ".join(self._args)
+        try:
+            result = self._calc.compute_result()
+            print(result)
+        except ValueError as e:
+            print(e)
 
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        print("Usage: python -m calculator.ui.cli <expression>")
-        sys.exit(1)
-    main(sys.argv[1:])
+    CalculatorCLI(sys.argv[1:]).run()
