@@ -1,7 +1,4 @@
-from typing import Union
-
-
-Number = Union[int, float]
+Number = int | float
 
 
 class Calculator:
