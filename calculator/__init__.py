@@ -34,6 +34,9 @@ class Calculator:
     
     def divide(self):
         self._append("/")
+
+    def dot(self):
+        self._append(".")
     
     def compute_result(self) -> Number:
         try:
