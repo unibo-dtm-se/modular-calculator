@@ -13,21 +13,14 @@ BUTTONS_NAMES = [
 ]
 
 
-def browse_children(widget):
-    yield widget
-    if hasattr(widget, 'children'):
-        for child in widget.children:
-            yield from browse_children(child)
-
-
 class CalculatorApp(App):
     def build(self):
-        self.calculator = Calculator()
+        self._calc = Calculator()
 
         grid = BoxLayout(orientation='vertical')
 
-        self.display = Label(text="0", font_size=24, size_hint=(1, 0.75))
-        grid.add_widget(self.display)
+        self._display = Label(text="0", font_size=24, size_hint=(1, 0.75))
+        grid.add_widget(self._display)
 
         for button_names_row in BUTTONS_NAMES:
             grid_row = BoxLayout()
@@ -37,35 +30,30 @@ class CalculatorApp(App):
             grid.add_widget(grid_row)
 
         return grid
-    
-    def button(self, text) -> Button:
-        for widget in browse_children(self.root):
-            if isinstance(widget, Button) and widget.text == text:
-                return widget
 
-    def on_button_press(self, instance):
-        match instance.text:
+    def on_button_press(self, button):
+        match button.text:
             case "=":
                 try:
-                    result = self.calculator.compute_result()
-                    self.display.text = str(result)
+                    result = self._calc.compute_result()
+                    self._display.text = str(result)
                 except ValueError as e:
-                    self.display.text = "Error"
+                    self._display.text = "Error"
             case "+":
-                self.calculator.plus()
-                self.display.text = self.calculator.expression
+                self._calc.plus()
+                self._display.text = self._calc.expression
             case "-":
-                self.calculator.minus()
-                self.display.text = self.calculator.expression
+                self._calc.minus()
+                self._display.text = self._calc.expression
             case "*":
-                self.calculator.multiply()
-                self.display.text = self.calculator.expression
+                self._calc.multiply()
+                self._display.text = self._calc.expression
             case "/":
-                self.calculator.divide()
-                self.display.text = self.calculator.expression
+                self._calc.divide()
+                self._display.text = self._calc.expression
             case _:
-                self.calculator.digit(instance.text)
-                self.display.text = self.calculator.expression
+                self._calc.digit(button.text)
+                self._display.text = self._calc.expression
 
 
 if __name__ == '__main__':
