@@ -4,14 +4,14 @@ A simple calculator toolkit written in Python, with several UIs.
 
 ## Remarks
 
-UI code is clearly separated from the business logic. 
-Actually, two sorts of UIs are provided: a command-line interface (CLI) and a graphical user interface (GUI), 
+UI code is clearly separated from the business logic.
+Actually, two sorts of UIs are provided: a command-line interface (CLI) and a graphical user interface (GUI),
 based on [Kivy](https://kivy.org/).
 
 ## Requirements
 
-- Python 3.11
-- Kivy 2.3
+- Python >= 3.8
+- Kivy 2.3.1
 
 ## How to run the calculator
 
