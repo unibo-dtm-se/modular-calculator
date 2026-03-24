@@ -10,6 +10,7 @@ BUTTONS_NAMES = [
     ['4', '5', '6', '*'],
     ['1', '2', '3', '-'],
     ['.', '0', '=', '+'],
+    ["(", "sin", "cos", ")"]
 ]
 
 
@@ -53,6 +54,18 @@ class CalculatorApp(App):
                 self._display.text = self._calc.expression
             case ".":
                 self._calc.dot()
+                self._display.text = self._calc.expression
+            case "(":
+                self._calc.open_parenthesis()
+                self._display.text = self._calc.expression
+            case ")":
+                self._calc.close_parenthesis()
+                self._display.text = self._calc.expression
+            case "cos":
+                self._calc.cos()
+                self._display.text = self._calc.expression
+            case "sin":
+                self._calc.sin()
                 self._display.text = self._calc.expression
             case _:
                 self._calc.digit(button.text)
