@@ -43,6 +43,8 @@ class Calculator:
     
     def divide(self):
         self._append("/")
+    def power(self):
+        self._append("**")
 
     def dot(self):
         self._append(".")
