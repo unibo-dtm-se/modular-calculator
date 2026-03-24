@@ -4,7 +4,7 @@ Number = int | float
 class Calculator:
 
     def __init__(self):
-        self.expression = ""
+        self.reset()
 
     def _ensure_is_digit(self, value: int | str):
         if isinstance(value, str):
@@ -35,6 +35,9 @@ class Calculator:
     def dot(self):
         self._append(".")
     
+    def reset(self):
+        self.expression = '0'
+
     def compute_result(self) -> Number:
         try:
             result = eval(self.expression)
