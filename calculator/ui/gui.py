@@ -10,7 +10,8 @@ BUTTONS_NAMES = [
     ['4', '5', '6', '*'],
     ['1', '2', '3', '-'],
     ['.', '0', '=', '+'],
-    ["(", "sin", "cos", ")"]
+    ["(", "sin", "cos", ")"],
+    ['C']
 ]
 
 
@@ -67,9 +68,14 @@ class CalculatorApp(App):
             case "sin":
                 self._calc.sin()
                 self._display.text = self._calc.expression
+            case 'C':
+                self._calc.reset()
+                self._display.text = self._calc.expression
+
             case _:
                 self._calc.digit(button.text)
                 self._display.text = self._calc.expression
+            
 
 
 if __name__ == '__main__':
